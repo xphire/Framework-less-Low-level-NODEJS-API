@@ -1,0 +1,33 @@
+{
+  "name": "node_only_crud_server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A CRUD Server created with node only",
+  "main": "index.js",
+  "scripts": {
+    "create:tables": "node --env-file=.env ./database/createTables.js",
+    "create:tables:test": "node --env-file=.env.e2e ./database/createTables.js",
+    "create:db": "node --env-file=.env ./database/createDatabase.js",
+    "create:db:test": "node --env-file=.env.e2e ./database/createDatabase.js",
+    "drop:db:test": "node --env-file=.env.e2e ./database/dropDatabase.js",
+    "dev": "yarn create:db && yarn create:tables && nodemon --env-file=.env index.js",
+    "run:test": "node --env-file=.env.e2e --test --test-force-exit \"**/*.test.js\" \"**/*.spec.js\"",
+    "test": "yarn drop:db:test && yarn create:db:test && yarn create:tables:test && yarn run:test"
+  },
+  "author": "Abdulafeez Adetunmbi",
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.12.0",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.3.0",
+    "chai": "^5.1.2",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.0.0"
+  }
+}
